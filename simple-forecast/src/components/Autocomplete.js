@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { changeSearch } from '../redux/reducers/search';
+import { changeCurrent } from '../redux/reducers/cache';
 
 const AutocompleteResultsContainer = styled.ul`
   list-style: none;
@@ -23,17 +23,20 @@ function AutocompleteResults() {
   const results = useSelector(state => state.autocomplete.results);
   const dispatch = useDispatch();
 
-  const handleAutocompleteResultClick = (e) => {
+  const handleAutocompleteResultClick = (value) => {
     console.log("Handle autocomplete result click");
-    console.log(e.target.value);
-    dispatch(changeSearch(e.target.value));
+    console.log(value);
+    dispatch(changeCurrent(value));
   }
 
   return (
     <AutocompleteResultsContainer>
-      {console.log("CHANGE ++++ "+results)}
-        {results.map((result) => (
-        <AutocompleteResult key={result.id} value={result.name} onClick={handleAutocompleteResultClick}>{result.name} ({result.country})</AutocompleteResult>
+      {results.map((result) => (
+        <AutocompleteResult 
+          key={result.id} 
+          value={`${result.name} ${result.country}`} 
+          onClick={() => handleAutocompleteResultClick({ city: result.name, country: result.country })}
+        >{result.name} ({result.country})</AutocompleteResult>
       ))}
     </AutocompleteResultsContainer>
   );

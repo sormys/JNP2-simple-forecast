@@ -15,8 +15,6 @@ export const autocompleEpic = (action$) => action$.pipe(
             .then(response => 
                 response.json())
             .then(data => {
-                console.log('received data:')
-                console.log(data)
                 if (data.error !== undefined) {
                     console.log(data)
                     return fillAutocomplete(null)

@@ -1,17 +1,55 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { enableMapSet } from 'immer'
 
+enableMapSet()
+
 const CACHE_NAME = 'cache'
 const UPDATE_ACTION = 'cacheUpdate'
 const CHANGE_CURRNET_ACTION = 'changeCurrent'
+const LOCATE_ACTION = 'locate'
+const CHECK_NICE_ACTION = 'checkNice'
 
 export const CACHE_UPDATE_ACTION = `${CACHE_NAME}/${UPDATE_ACTION}`
 export const CACHE_CHANGE_CURRENT_ACTION = `${CACHE_NAME}/${CHANGE_CURRNET_ACTION}`
+export const CACHE_USE_LOCATION_ACTION = `${CACHE_NAME}/${LOCATE_ACTION}`
+export const CACHE_CHECK_NICE_ACTION = `${CACHE_NAME}/${CHECK_NICE_ACTION}`
 
-enableMapSet()
+export const NiceLevel = {
+    NICE: 'nice',
+    PASSABLE: 'passable',
+    NOT_NICE: 'not nice'
+}
+
 
 export const makeKey = (city, country) => {
     return `${city} ${country}`
+}
+
+const isNotRainy = (weather) => {
+    let isNotRainy = weather.current.condition.text.includes('rain') ? 0 : 1
+    console.log('isNotRainy')
+    console.log(weather.current)
+    console.log('weather.forecast')
+    weather.forecast.forecastday.forEach(day => {
+        if(day.day.condition.text.includes('rain')) {
+            isNotRainy = 0
+        }
+    })
+    return isNotRainy
+}
+
+const isAverageTempNice = (weather) => {
+    const averageTemp = weather.forecast.forecastday[0].day.avgtemp_c
+    return averageTemp > 18 && averageTemp < 25 ? 1 : 0 
+}
+
+const allwaysMiddle = (weather) => {
+    let allwaysMiddle = weather.current.temp_c > 15 && weather.current.temp_c < 30 ? 1 : 0
+    weather.forecast.forecastday.forEach(day => {
+        if(day.day.maxtemp_c > 30 || day.day.mintemp_c < 15)
+            allwaysMiddle = 0
+    })
+    return allwaysMiddle
 }
 
 const cacheSlice = createSlice({
@@ -37,12 +75,29 @@ const cacheSlice = createSlice({
                 console.log("updating cache")
                 state.map.set(makeKey(action.payload.data.location.name, action.payload.data.location.country), action.payload)
             }
+        },
+        [LOCATE_ACTION]: (state) => {
+            state.isLoading = true
+        },
+        [CHECK_NICE_ACTION]: (state) => {
+            if(state.current === '') 
+                return
+            const weather = state.map.get(state.current)
+            if (weather === undefined || weather === null) 
+                return
+            const niceCriteria = isNotRainy(weather.data) + isAverageTempNice(weather.data) + allwaysMiddle(weather.data) 
+            weather.niceLevel = niceCriteria > 2 ? NiceLevel.NICE : niceCriteria > 1 ? NiceLevel.PASSABLE : NiceLevel.NOT_NICE
+            console.log("isNotRainy:" + isNotRainy(weather.data))
+            console.log("isAverageTempNice:" + isAverageTempNice(weather.data))
+            console.log("allwaysMiddle:" + allwaysMiddle(weather.data))
+            console.log("NICENEST SET:" + weather.niceLevel)
+            console.log(state.map.get(state.current))
         }
     }
 });
 
 const reducer = cacheSlice.reducer
 
-export const { cacheUpdate, changeCurrent } = cacheSlice.actions
+export const { cacheUpdate, changeCurrent, locate, checkNice } = cacheSlice.actions
 
 export default reducer

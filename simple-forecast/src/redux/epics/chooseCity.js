@@ -17,9 +17,12 @@ export const chooseCityEpic = (action$, state$) => action$.pipe(
     mergeMap((action) => {
         console.log('chooseCityEpic')
         console.log(action.payload)
-        const key = makeKey(action.payload.city, action.payload.country)
-        const cached = state$.value.cache.map.get(key)
-        if (cached !== undefined && isUpToDate(cached.timeStamp))
+        let cached = undefined
+        if(action.payload !== null) {
+            const key = makeKey(action.payload.city, action.payload.country)
+            cached = state$.value.cache.map.get(key)
+        }
+        if (action.payload === null || (cached !== undefined && isUpToDate(cached.timeStamp)))
             return new Observable(observer => {
                 observer.next(cacheUpdate(null))
                 observer.complete()

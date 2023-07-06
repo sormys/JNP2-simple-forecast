@@ -25,7 +25,7 @@ function App() {
       <GlobalStyle />
       <SearchBar />
       <Autocomplete />
-      {isLoading ? <Loader/> : <WeatherInfo data={forecast} />}
+      {isLoading ? <Loader color={props => props.theme.secondary}/> : <WeatherInfo data={forecast} />}
       <Number />
     </DarkThemeProvider>
   );

@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { Audio } from 'react-loader-spinner';
 
 const Loader = styled(Audio)`
-  display: block;
-  margin: 0 auto;
-  color: ${props => props.secondary};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `;
 
 export default Loader;

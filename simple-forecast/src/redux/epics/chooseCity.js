@@ -1,7 +1,7 @@
 import { ofType } from 'redux-observable'
 import { mergeMap } from 'rxjs/operators'
 import { weatherAPIKey } from '../../config'
-import { CACHE_CHANGE_CURRENT_ACTION } from '../reducers/cache'
+import { CACHE_CHANGE_CURRENT_ACTION, load } from '../reducers/cache'
 import { makeKey, cacheUpdate } from '../reducers/cache'
 import { Observable } from 'rxjs'
 
@@ -18,13 +18,16 @@ export const chooseCityEpic = (action$, state$) => action$.pipe(
         console.log('chooseCityEpic')
         console.log(action.payload)
         let cached = undefined
-        if(action.payload !== null) {
-            const key = makeKey(action.payload.city, action.payload.country)
-            cached = state$.value.cache.map.get(key)
-        }
-        if (action.payload === null || (cached !== undefined && isUpToDate(cached.timeStamp)))
+        if(action.payload === null) 
             return new Observable(observer => {
                 observer.next(cacheUpdate(null))
+                observer.complete()
+            })
+        const key = makeKey(action.payload.city, action.payload.country)
+        cached = state$.value.cache.map.get(key)
+        if (cached !== undefined && isUpToDate(cached.timeStamp))
+            return new Observable(observer => {
+                observer.next(load(true))
                 observer.complete()
             })
 

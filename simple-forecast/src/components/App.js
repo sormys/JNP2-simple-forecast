@@ -13,7 +13,7 @@ function App() {
       <GlobalStyle />
       <ChangeThemeButton />
       <LocateButton />
-      <SearchBar />
+      {/* <SearchBar /> */}
       <Autocomplete />
       <Tabs />
       <WeatherDisplay />

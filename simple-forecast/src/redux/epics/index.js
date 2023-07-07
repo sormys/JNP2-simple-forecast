@@ -5,6 +5,8 @@ import chooseCityEpic from './chooseCity'
 import defaultTabEpic from './defaultTab'
 import localWeatherEpic from './localWeather'
 import updateNiceEpic from './updateNice' 
+import startGifsEpic from './startGifs'
+import descriptionChangeEpic from './descriptionChange'
 
 const rootEpic = combineEpics(
     addEpic,
@@ -12,7 +14,9 @@ const rootEpic = combineEpics(
     chooseCityEpic,
     defaultTabEpic,
     localWeatherEpic,
-    updateNiceEpic
+    updateNiceEpic,
+    startGifsEpic,
+    descriptionChangeEpic
 )
 
 export default rootEpic

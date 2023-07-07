@@ -8,11 +8,13 @@ const UPDATE_ACTION = 'cacheUpdate'
 const CHANGE_CURRNET_ACTION = 'changeCurrent'
 const LOCATE_ACTION = 'locate'
 const CHECK_NICE_ACTION = 'checkNice'
+const LOAD_ACTION = 'load'
 
 export const CACHE_UPDATE_ACTION = `${CACHE_NAME}/${UPDATE_ACTION}`
 export const CACHE_CHANGE_CURRENT_ACTION = `${CACHE_NAME}/${CHANGE_CURRNET_ACTION}`
 export const CACHE_USE_LOCATION_ACTION = `${CACHE_NAME}/${LOCATE_ACTION}`
 export const CACHE_CHECK_NICE_ACTION = `${CACHE_NAME}/${CHECK_NICE_ACTION}`
+export const CACHE_LOAD_ACTION = `${CACHE_NAME}/${LOAD_ACTION}`
 
 export const NiceLevel = {
     NICE: 'nice',
@@ -74,7 +76,11 @@ const cacheSlice = createSlice({
             } else {
                 console.log("updating cache")
                 state.map.set(makeKey(action.payload.data.location.name, action.payload.data.location.country), action.payload)
+                state.current = makeKey(action.payload.data.location.name, action.payload.data.location.country)
             }
+        },
+        [LOAD_ACTION]: (state, action) => {
+            state.isLoading = false
         },
         [LOCATE_ACTION]: (state) => {
             state.isLoading = true
@@ -98,6 +104,6 @@ const cacheSlice = createSlice({
 
 const reducer = cacheSlice.reducer
 
-export const { cacheUpdate, changeCurrent, locate, checkNice } = cacheSlice.actions
+export const { cacheUpdate, changeCurrent, locate, checkNice, load } = cacheSlice.actions
 
 export default reducer

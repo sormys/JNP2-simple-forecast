@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import WeatherInfo from './CurrentWeather';
 
 const WeatherContainer = styled.div`
   display: flex;
@@ -124,8 +123,6 @@ function DailyForecast() {
   if (forecast === null) {
     return null;
   }
-
-  const dataDate = new Date(forecast.forecast.forecastday[0].date);
 
   return (
     <WeatherContainer>

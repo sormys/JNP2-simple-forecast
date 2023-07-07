@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Gif from './Gif';
 
 const CurrentWeatherContainer = styled.div`
   display: flex;
@@ -84,6 +85,7 @@ function CurrentWeather({ data }) {
           </WeatherDataItem>
         ))}
       </WeatherData>
+      <Gif />
     </CurrentWeatherContainer>
   );
 }

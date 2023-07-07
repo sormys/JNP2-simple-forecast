@@ -1,45 +1,87 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
 import { changeCurrent } from '../redux/reducers/cache';
+import { changeSearch } from '../redux/reducers/search';
+import { changeDescription } from '../redux/reducers/gifs';
 
-const AutocompleteResultsContainer = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
+const AutocompleteSearchContainer = styled.div`
+  width: 100%;
 `;
 
-const AutocompleteResult = styled.li`
-  padding: 0.5rem;
-  cursor: pointer;
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? state.theme.primary : 'transparent',
+    color: state.isSelected ? state.theme.primary : state.theme.primary,
+    cursor: 'pointer',
+    ':hover': {
+      backgroundColor: state.theme.primary,
+      color: state.theme.primary,
+    },
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    borderRadius: 4,
+    borderColor: state.isFocused ? state.theme.primary : state.theme.primary,
+    boxShadow: state.isFocused ? `0 0 0 1px ${state.theme.primary}` : 'none',
+    ':hover': {
+      borderColor: state.theme.primary,
+    },
+  }),
+  menu: (provided) => ({
+    ...provided,
+    borderRadius: 4,
+    boxShadow: '0 0 4px ${state.theme.primary}',
+  }),
+  singleValue: (provided, state) => ({
+    ...provided,
+    color: state.theme.secondary,
+  }),
+};
 
-  &:hover {
-    background-color: ${props => props.theme.selection};
-  }
-`;
-
-function AutocompleteResults() {
+function AutocompleteSearch() {
   const results = useSelector(state => state.autocomplete.results);
   const dispatch = useDispatch();
 
-  const handleAutocompleteResultClick = (value) => {
-    console.log("Handle autocomplete result click");
-    console.log(value);
-    dispatch(changeCurrent(value));
+  const handleInputChange = (inputValue) => {
+    console.log("Handle input change");
+    console.log(inputValue);
+    dispatch(changeSearch(inputValue));
+    console.log("Dispatched change");
+    console.log(results)
+  };
+
+  const handleAutocompleteResultChange = (selectedOption) => {
+    console.log("Handle autocomplete result change");
+    console.log(selectedOption);
+    dispatch(changeCurrent({city: selectedOption.name, country: selectedOption.country}));
   }
 
+  let options = []
+  if(results !== null && results !== undefined){
+    console.log("Results")
+    console.log(results)
+    options = results.map((result) => ({
+      value: { city: result.name, country: result.country },
+      label: `${result.name} (${result.country})`,
+      name: result.name,
+      country: result.country,
+    }));
+  }
+    
   return (
-    <AutocompleteResultsContainer>
-      {results.map((result) => (
-        <AutocompleteResult 
-          key={result.id} 
-          value={`${result.name} ${result.country}`} 
-          onClick={() => handleAutocompleteResultClick({ city: result.name, country: result.country })}
-        >{result.name} ({result.country})</AutocompleteResult>
-      ))}
-    </AutocompleteResultsContainer>
+    <AutocompleteSearchContainer>
+      <Select
+        options={options}
+        styles={customStyles}
+        onInputChange={handleInputChange}
+        onChange={handleAutocompleteResultChange}
+        placeholder="Search for a city..."
+      />
+    </AutocompleteSearchContainer>
   );
 }
 
-export default AutocompleteResults;
+export default AutocompleteSearch;

@@ -5,6 +5,7 @@ import autocompleteReducer from "./autocomplete";
 import searchReducer from "./search";
 import cacheReducer from "./cache";
 import tabsReducer from "./tabs";
+import gifsReducer from "./gifs";
 
 const rootReducer = {
     counter: counterReducer,
@@ -13,7 +14,8 @@ const rootReducer = {
     autocomplete: autocompleteReducer,
     search: searchReducer,
     cache: cacheReducer,
-    tabs: tabsReducer
+    tabs: tabsReducer,
+    gifs: gifsReducer
 };
 
 export default rootReducer

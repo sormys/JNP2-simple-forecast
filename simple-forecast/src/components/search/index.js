@@ -4,9 +4,11 @@ import Select from "react-select"
 import { changeCurrent } from "../weather/reducer"
 import { changeSearch } from "./reducer"
 import { AutocompleteBarWrapper } from "./components"
+import { LineLoader } from "../loaders"
 
 const AutocompleteBar = () => {
   const results = useSelector((state) => state.search.results)
+  const isLoading = useSelector((state) => state.search.isLoading)
   const dispatch = useDispatch()
 
   const handleInputChange = (inputValue) => {
@@ -38,6 +40,8 @@ const AutocompleteBar = () => {
         options={options}
         onInputChange={handleInputChange}
         onChange={handleAutocompleteResultChange}
+        isLoading={isLoading}
+        loadingMessage={() => <LineLoader/>}
         placeholder="Search for a city..."
       />  
     </AutocompleteBarWrapper>

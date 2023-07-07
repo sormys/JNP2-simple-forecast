@@ -1,6 +1,7 @@
 import { ofType } from "redux-observable"
 import { CACHE_CHANGE_CURRENT_ACTION } from "../reducer"
-import { changeTab, TabsNames } from "../../tabBar/reducer"
+import { changeTab } from "../../tabBar/reducer"
+import { TabsNames } from "../../tabBar/const"
 import { map } from "rxjs/operators"
 
 export const defaultTabEpic = (action$) =>

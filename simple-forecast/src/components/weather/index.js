@@ -10,8 +10,9 @@ import {
   LabelsContainer,
   WeatherTabContainer,
 } from "./components"
-import Loader from "../loader"
-import { TabsNames } from "../tabBar/reducer"
+import { checkWeatherStatus } from "../../logic/weatherLogic"
+import { CircleLoader } from "../loaders"
+import { TabsNames } from "../tabBar/const"
 
 const WeatherDisplay = () => {
   const currentTab = useSelector((state) => state.tabs.current)
@@ -21,8 +22,10 @@ const WeatherDisplay = () => {
     return cached !== undefined ? cached : null
   })
 
-  if (isLoading) return <Loader />
+  
+  if (isLoading) return <CircleLoader />
   else if (forecast === null) return null
+  const niceStatus = checkWeatherStatus(forecast.data)
   let weatherComponent
 
   switch (currentTab) {
@@ -50,7 +53,7 @@ const WeatherDisplay = () => {
       <LabelsContainer>
         <NormalText>
           The weather here is{" "}
-          <NiceStatusText>{forecast.niceLevel}</NiceStatusText>
+          <NiceStatusText>{niceStatus}</NiceStatusText>
         </NormalText>
       </LabelsContainer>
       {weatherComponent}

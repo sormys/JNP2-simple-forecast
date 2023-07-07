@@ -12,14 +12,22 @@ const searchSlice = createSlice({
   initialState: {
     value: "",
     results: [],
+    isLoading: false,
+    cached: new Map(),
   },
   reducers: {
     [CHANGE_ACTION]: (state, action) => {
       state.value = action.payload
+      state.isLoading = true
     },
     [AUTOCOMPLETE_ACTION]: (state, action) => {
       if (action.payload === null) state.results = []
-      else state.results = action.payload
+      else {
+        state.results = action.payload
+        state.cached.set(state.value, action.payload)
+      }
+      state.isLoading = false
+
     }
   },
 })

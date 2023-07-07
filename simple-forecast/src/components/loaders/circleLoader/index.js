@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import { ThemeContext } from "styled-components"
-import { LoaderContainer } from "./LoaderContainer"
+import { LoaderContainer } from "../LoaderContainer"
 import { StyledCircles } from "./StyledCircles"
 
-const Loader = () => {
+export const CircleLoader = () => {
   const theme = useContext(ThemeContext) 
 
   return (
@@ -12,5 +12,3 @@ const Loader = () => {
     </LoaderContainer>
   )
 }
-
-export default Loader

@@ -1,16 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { TabsNames } from "./const"
 
 const TAB_NAME = "tabs"
 const CHANGE_ACTION = "changeTab"
 
 export const TAB_CHANGE_ACTION = `${TAB_NAME}/${CHANGE_ACTION}`
 
-export const TabsNames = {
-  CURRENT: "current",
-  DAILY: "daily",
-  HOURLY: "hourly",
-  NONE: null,
-}
 
 const tabsSlice = createSlice({
   name: TAB_NAME,

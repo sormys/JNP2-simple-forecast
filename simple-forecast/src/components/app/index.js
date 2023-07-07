@@ -3,6 +3,7 @@ import Autocomplete from "../search"
 import Tabs from "../tabBar"
 import WeatherDisplay from "../weather"
 import { LocateButton, ChangeThemeButton } from "../buttons"
+import { Credits } from "../credits"
 
 export const App = () => {
   return (
@@ -10,6 +11,7 @@ export const App = () => {
       <GlobalStyle />
       <ChangeThemeButton />
       <LocateButton />
+      <Credits text="Powered by weatherapi.com" />
       <Autocomplete />
       <Tabs />
       <WeatherDisplay />

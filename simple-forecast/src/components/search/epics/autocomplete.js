@@ -5,7 +5,7 @@ import { weatherAPIKey } from "../../../config"
 import { autocomplete } from "../reducer"
 import { Observable } from "rxjs"
 
-export const autocompleEpic = (action$) =>
+export const autocompleEpic = (action$, state$) =>
   action$.pipe(
     ofType(SEARCH_CHANGE_ACTION),
     mergeMap((action) => {
@@ -18,6 +18,14 @@ export const autocompleEpic = (action$) =>
           observer.next(autocomplete(null))
           observer.complete()
         })
+
+      const cached = state$.value.search.cached.get(action.payload)
+      if (cached !== undefined) {
+        return new Observable((observer) => {
+          observer.next(autocomplete(cached))
+          observer.complete()
+        })
+      }
 
       let url = `http://api.weatherapi.com/v1/search.json?key=${weatherAPIKey}&q=${action.payload}`
       return fetch(url)

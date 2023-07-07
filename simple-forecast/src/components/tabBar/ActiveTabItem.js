@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { TabItem } from './TabItem'
+import styled from "styled-components"
+import { TabItem } from "./TabItem"
 
 export const ActiveTabItem = styled(TabItem)`
   color: ${(props) => props.theme.foreground};

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const LoaderContainer = styled.div`
   margin-top: 10%;

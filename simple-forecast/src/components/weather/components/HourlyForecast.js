@@ -1,5 +1,11 @@
 import React from "react"
-import { HourlyForecastContainer, HourlyForecastIcon, HourlyForecastListItem, HourlyForecastTemperature, HourlyForecastTime } from "./WeatherData"
+import {
+  HourlyForecastContainer,
+  HourlyForecastIcon,
+  HourlyForecastListItem,
+  HourlyForecastTemperature,
+  HourlyForecastTime,
+} from "./WeatherData"
 
 export const HourlyForecast = ({ data }) => {
   if (data === null) return null
@@ -31,4 +37,3 @@ export const HourlyForecast = ({ data }) => {
     </HourlyForecastContainer>
   )
 }
-

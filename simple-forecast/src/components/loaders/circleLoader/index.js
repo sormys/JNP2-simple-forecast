@@ -4,7 +4,7 @@ import { LoaderContainer } from "../LoaderContainer"
 import { StyledCircles } from "./StyledCircles"
 
 export const CircleLoader = () => {
-  const theme = useContext(ThemeContext) 
+  const theme = useContext(ThemeContext)
 
   return (
     <LoaderContainer>

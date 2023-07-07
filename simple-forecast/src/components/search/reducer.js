@@ -27,8 +27,7 @@ const searchSlice = createSlice({
         state.cached.set(state.value, action.payload)
       }
       state.isLoading = false
-
-    }
+    },
   },
 })
 
@@ -37,4 +36,3 @@ const searchReducer = searchSlice.reducer
 export const { changeSearch, autocomplete } = searchSlice.actions
 
 export default searchReducer
-

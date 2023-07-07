@@ -1,11 +1,6 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { 
-  DaySummaryWeather,
-  MultiDayWeatherContainer,
-} from "./WeatherData"
-
-
+import { DaySummaryWeather, MultiDayWeatherContainer } from "./WeatherData"
 
 export const DailyForecast = () => {
   const forecast = useSelector((state) => {

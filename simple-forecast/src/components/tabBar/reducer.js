@@ -6,7 +6,6 @@ const CHANGE_ACTION = "changeTab"
 
 export const TAB_CHANGE_ACTION = `${TAB_NAME}/${CHANGE_ACTION}`
 
-
 const tabsSlice = createSlice({
   name: TAB_NAME,
   initialState: {

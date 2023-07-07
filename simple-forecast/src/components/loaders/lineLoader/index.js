@@ -4,7 +4,7 @@ import { LoaderContainer } from "../LoaderContainer"
 import { StyledLineWave } from "./StyledLineWave"
 
 export const LineLoader = () => {
-  const theme = useContext(ThemeContext) 
+  const theme = useContext(ThemeContext)
 
   return (
     <LoaderContainer>

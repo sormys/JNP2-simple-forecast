@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { Circles } from 'react-loader-spinner'
+import styled from "styled-components"
+import { Circles } from "react-loader-spinner"
 
 export const StyledCircles = styled(Circles)`
   display: flex;

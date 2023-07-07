@@ -10,14 +10,14 @@ import { MultiDayWeatherContainer } from "./MultiDayWeatherContainer"
 import { DaySummaryWeather } from "./DaySummaryWeather"
 
 export {
-    DayDescription,
-    DayTemperature,
-    DayWeatherData,
-    DayWeatherDataItem,
-    DayWeatherDataLabel,
-    DayWeatherDataValue,
-    DayWeatherIcon,
-    DayWeatherContainer,
-    MultiDayWeatherContainer,
-    DaySummaryWeather
+  DayDescription,
+  DayTemperature,
+  DayWeatherData,
+  DayWeatherDataItem,
+  DayWeatherDataLabel,
+  DayWeatherDataValue,
+  DayWeatherIcon,
+  DayWeatherContainer,
+  MultiDayWeatherContainer,
+  DaySummaryWeather,
 }

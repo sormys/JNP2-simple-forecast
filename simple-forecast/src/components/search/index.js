@@ -41,9 +41,9 @@ const AutocompleteBar = () => {
         onInputChange={handleInputChange}
         onChange={handleAutocompleteResultChange}
         isLoading={isLoading}
-        loadingMessage={() => <LineLoader/>}
+        loadingMessage={() => <LineLoader />}
         placeholder="Search for a city..."
-      />  
+      />
     </AutocompleteBarWrapper>
   )
 }

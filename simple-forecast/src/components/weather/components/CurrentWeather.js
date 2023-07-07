@@ -1,17 +1,15 @@
 import React from "react"
 import Gif from "../../gif"
-import { 
-  DayWeatherContainer, 
-  DayDescription, 
-  DayTemperature, 
-  DayWeatherData, 
-  DayWeatherDataItem, 
+import {
+  DayWeatherContainer,
+  DayDescription,
+  DayTemperature,
+  DayWeatherData,
+  DayWeatherDataItem,
   DayWeatherDataLabel,
-  DayWeatherDataValue, 
-  DayWeatherIcon 
+  DayWeatherDataValue,
+  DayWeatherIcon,
 } from "./WeatherData"
-
-
 
 export const CurrentWeather = ({ data }) => {
   if (data === null) return null

@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { LineWave } from 'react-loader-spinner'
+import styled from "styled-components"
+import { LineWave } from "react-loader-spinner"
 
 export const StyledLineWave = styled(LineWave)`
   display: flex;

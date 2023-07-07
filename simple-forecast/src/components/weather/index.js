@@ -1,12 +1,12 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { 
-  CurrentWeather, 
-  DailyForecast, 
-  HourlyForecast, 
-  NormalText, 
-  CityNameText, 
-  NiceStatusText, 
+import {
+  CurrentWeather,
+  DailyForecast,
+  HourlyForecast,
+  NormalText,
+  CityNameText,
+  NiceStatusText,
   LabelsContainer,
   WeatherTabContainer,
 } from "./components"
@@ -22,7 +22,6 @@ const WeatherDisplay = () => {
     return cached !== undefined ? cached : null
   })
 
-  
   if (isLoading) return <CircleLoader />
   else if (forecast === null) return null
   const niceStatus = checkWeatherStatus(forecast.data)
@@ -36,8 +35,9 @@ const WeatherDisplay = () => {
       weatherComponent = <DailyForecast />
       break
     case TabsNames.HOURLY:
-      weatherComponent = 
+      weatherComponent = (
         <HourlyForecast data={forecast.data.forecast.forecastday[0].hour} />
+      )
       break
     default:
       weatherComponent = null
@@ -52,8 +52,7 @@ const WeatherDisplay = () => {
       </LabelsContainer>
       <LabelsContainer>
         <NormalText>
-          The weather here is{" "}
-          <NiceStatusText>{niceStatus}</NiceStatusText>
+          The weather here is <NiceStatusText>{niceStatus}</NiceStatusText>
         </NormalText>
       </LabelsContainer>
       {weatherComponent}

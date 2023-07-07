@@ -31,12 +31,7 @@ function WeatherDisplay() {
   const currentTab = useSelector(state => state.tabs.current);
   const isLoading = useSelector(state => state.cache.isLoading);
   const forecast = useSelector(state => {
-    console.log("current " + state.cache.current)
     const cached = state.cache.map.get(state.cache.current)
-    console.log("cached "+ cached + " " + state.cache.current.city + " " + state.cache.current.country)
-    console.log(state.cache.map)
-    if(cached !== undefined)
-      console.log(cached.data.current)
     return cached !== undefined ? cached : null
   })
 

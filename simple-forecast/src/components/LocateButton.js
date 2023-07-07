@@ -6,12 +6,10 @@ import { useDispatch } from 'react-redux';
 function LocateButton() {
   const dispatch = useDispatch();
   const handleLocateClick = () => {
-    console.log("Locate button clicked");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
           const { latitude, longitude } = position.coords;
           dispatch(locate({ latitude, longitude }))
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
       }, error => {
           console.error(error);
       });

@@ -49,7 +49,6 @@ function Tabs() {
   const currentTab = useSelector(state => state.tabs.current);
 
   const handleTabClick = (tabNumber) => {
-    console.log(`Tab ${tabNumber} clicked`);
     dispatch(changeTab(tabNumber));
   };
 

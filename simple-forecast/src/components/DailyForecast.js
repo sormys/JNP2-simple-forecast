@@ -111,18 +111,13 @@ function DayWeather({ data }) {
 
 function DailyForecast() {
     const forecast = useSelector(state => {
-        console.log("currentDaily " + state.cache.current)
         const cached = state.cache.map.get(state.cache.current)
-        console.log("cachedDaily "+ cached + " " + state.cache.current.city + " " + state.cache.current.country)
-        console.log(state.cache.map)
-        if(cached !== undefined)
-            console.log(cached.data.current)
         return cached !== undefined ? cached.data : null
     })
 
-  if (forecast === null) {
+  if (forecast === null) 
     return null;
-  }
+  
 
   return (
     <WeatherContainer>

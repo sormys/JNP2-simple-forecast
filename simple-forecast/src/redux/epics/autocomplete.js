@@ -9,8 +9,6 @@ import { Observable } from 'rxjs'
 export const autocompleEpic = (action$) => action$.pipe(
     ofType(SEARCH_CHANGE_ACTION),
     mergeMap((action) => {
-        console.log('autocomplete epic')
-        console.log(action)
         if(action.payload === undefined || action.payload === null || action.payload === '')
             return new Observable(observer => {
                 observer.next(fillAutocomplete(null))
@@ -19,13 +17,11 @@ export const autocompleEpic = (action$) => action$.pipe(
         
         let url = 
             `http://api.weatherapi.com/v1/search.json?key=${weatherAPIKey}&q=${action.payload}`
-        console.log(url)
         return fetch(url)
             .then(response => 
                 response.json())
             .then(data => {
                 if (data.error !== undefined) {
-                    console.log(data)
                     return fillAutocomplete(null)
                 } else {
                     return fillAutocomplete(data)

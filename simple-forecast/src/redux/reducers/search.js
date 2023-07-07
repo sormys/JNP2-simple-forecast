@@ -12,9 +12,7 @@ const searchSlice = createSlice({
     },
     reducers: {
         [CHANGE_ACTION]: (state, action) => {
-            console.log("Change search")
             state.value = action.payload
-            console.log(state.value)
         }
     }
 });

@@ -29,9 +29,6 @@ export const makeKey = (city, country) => {
 
 const isNotRainy = (weather) => {
     let isNotRainy = weather.current.condition.text.includes('rain') ? 0 : 1
-    console.log('isNotRainy')
-    console.log(weather.current)
-    console.log('weather.forecast')
     weather.forecast.forecastday.forEach(day => {
         if(day.day.condition.text.includes('rain')) {
             isNotRainy = 0
@@ -74,7 +71,6 @@ const cacheSlice = createSlice({
             if (action.payload === null) {
                 return
             } else {
-                console.log("updating cache")
                 state.map.set(makeKey(action.payload.data.location.name, action.payload.data.location.country), action.payload)
                 state.current = makeKey(action.payload.data.location.name, action.payload.data.location.country)
             }
@@ -93,11 +89,6 @@ const cacheSlice = createSlice({
                 return
             const niceCriteria = isNotRainy(weather.data) + isAverageTempNice(weather.data) + allwaysMiddle(weather.data) 
             weather.niceLevel = niceCriteria > 2 ? NiceLevel.NICE : niceCriteria > 1 ? NiceLevel.PASSABLE : NiceLevel.NOT_NICE
-            console.log("isNotRainy:" + isNotRainy(weather.data))
-            console.log("isAverageTempNice:" + isAverageTempNice(weather.data))
-            console.log("allwaysMiddle:" + allwaysMiddle(weather.data))
-            console.log("NICENEST SET:" + weather.niceLevel)
-            console.log(state.map.get(state.current))
         }
     }
 });

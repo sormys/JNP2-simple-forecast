@@ -9,7 +9,6 @@ import { gifsAPIKey } from '../../config'
 export const startGifsEpic = (action$, state$) => action$.pipe(
     ofType(GIFS_CHANGE_DESCRIPTION_ACTION),
     mergeMap((action) => {
-        console.log('start gifs epic')
         if(action.payload === null || action.payload === undefined || action.payload === '')
             return new Observable( observer => {
                 observer.next(fetchGifs(null))
@@ -19,15 +18,11 @@ export const startGifsEpic = (action$, state$) => action$.pipe(
                 startWith(0),
                 withLatestFrom(state$.pipe(startWith(0))),
                 mergeMap(([_, state]) => {
-                    console.log('fetch gifs epic23')
-                    console.log(action)
-                    console.log("+++++++++++++++")
                     let url = 
                         `https://tenor.googleapis.com/v2/search?key=${gifsAPIKey}&q=${action.payload}&limit=1`
                     if(state.gifs.next !== 0){
                         url += `&pos=${state.gifs.next}`
                     }
-                    console.log(url)
                     return fetch(url)
                         .then(response => 
                             response.json())
@@ -36,7 +31,6 @@ export const startGifsEpic = (action$, state$) => action$.pipe(
                                 console.log(data)
                                 return fetchGifs(null)
                             } else {
-                                console.log(data)
                                 return fetchGifs(data)
                             }
                         })

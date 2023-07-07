@@ -46,23 +46,16 @@ function AutocompleteSearch() {
   const dispatch = useDispatch();
 
   const handleInputChange = (inputValue) => {
-    console.log("Handle input change");
-    console.log(inputValue);
     dispatch(changeSearch(inputValue));
-    console.log("Dispatched change");
-    console.log(results)
   };
 
   const handleAutocompleteResultChange = (selectedOption) => {
-    console.log("Handle autocomplete result change");
-    console.log(selectedOption);
     dispatch(changeCurrent({city: selectedOption.name, country: selectedOption.country}));
+    dispatch(changeDescription('sunny'));
   }
 
   let options = []
   if(results !== null && results !== undefined){
-    console.log("Results")
-    console.log(results)
     options = results.map((result) => ({
       value: { city: result.name, country: result.country },
       label: `${result.name} (${result.country})`,

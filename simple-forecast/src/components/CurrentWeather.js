@@ -53,9 +53,8 @@ const WeatherDataItem = styled.div`
   }
 `
 function CurrentWeather({ data }) {
-  if (data === null) {
+  if (data === null) 
     return null;
-  }
 
   const temperature = data.temp_c;
   const condition = data.condition.text;

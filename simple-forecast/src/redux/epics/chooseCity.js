@@ -15,8 +15,6 @@ function isUpToDate(timeStamp) {
 export const chooseCityEpic = (action$, state$) => action$.pipe(
     ofType(CACHE_CHANGE_CURRENT_ACTION),
     mergeMap((action) => {
-        console.log('chooseCityEpic')
-        console.log(action.payload)
         let cached = undefined
         if(action.payload === null) 
             return new Observable(observer => {
@@ -33,15 +31,11 @@ export const chooseCityEpic = (action$, state$) => action$.pipe(
 
         let url = 
             `http://api.weatherapi.com/v1/forecast.json?key=${weatherAPIKey}&q=${action.payload.city} ${action.payload.country}&days=3&aqi=no&alerts=no`
-        console.log(url)
         return fetch(url)
             .then(response => 
                 response.json())
             .then(data => {
-                console.log('received data:')
-                console.log(data)
                 if (data.error !== undefined) {
-                    console.log(data)
                     return cacheUpdate(null)
                 } else {
                     return cacheUpdate({data, timeStamp: Date.now()})

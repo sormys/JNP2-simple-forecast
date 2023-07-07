@@ -1,6 +1,5 @@
 import DarkThemeProvider from './DarkThemeProvider'
 import GlobalStyle from './GlobalStyle'
-import SearchBar from './SearchBar'
 import Autocomplete from './Autocomplete'
 import Tabs from './Tabs'
 import WeatherDisplay from './WeatherDisplay'
@@ -13,7 +12,6 @@ function App() {
       <GlobalStyle />
       <ChangeThemeButton />
       <LocateButton />
-      {/* <SearchBar /> */}
       <Autocomplete />
       <Tabs />
       <WeatherDisplay />

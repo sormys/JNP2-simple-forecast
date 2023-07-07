@@ -19,9 +19,7 @@ const tabsSlice = createSlice({
     },
     reducers: {
         [CHANGE_ACTION]: (state, action) => {
-            console.log("Change tab")
             state.current = action.payload
-            console.log(state.current)
         }
     }
 });

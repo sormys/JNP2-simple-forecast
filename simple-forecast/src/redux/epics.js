@@ -8,6 +8,7 @@ import defaultTabEpic from "../components/weather/epics/defaultTab"
 import localWeatherEpic from "../components/weather/epics/localWeather"
 import fetchToCacheEpic from "../components/weather/epics/fetchToCache"
 import checkCachedEpic from "../components/weather/epics/checkCached"
+import getCoordinatesEpic from "../components/weather/epics/getCoordinates"
 import cacheFinishLoadingEpic from "../components/weather/epics/finishLoading"
 import startGifsEpic from "../components/gif/epics/startGifs"
 import fetchOneGifEpic from "../components/gif/epics/fetchOneGif"
@@ -23,6 +24,7 @@ const rootEpic = combineEpics(
   localWeatherEpic,
   fetchToCacheEpic,
   checkCachedEpic,
+  getCoordinatesEpic,
   cacheFinishLoadingEpic,
   startGifsEpic,
   descriptionChangeEpic,

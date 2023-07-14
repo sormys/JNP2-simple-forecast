@@ -5,15 +5,13 @@ import { changeCurrent } from "../weather/reducer"
 import { changeSearch } from "./reducer"
 import { AutocompleteBarWrapper } from "./components"
 import { LineLoader } from "../loaders"
-import styled from "styled-components"
 import { ThemeContext } from "styled-components"
 
 const getCustomStyles = (theme) => {
-  const { primary, background, foreground, selection, text } = theme;
+  const { primary, background, foreground, text } = theme;
   return {
     control: (provided, state) => ({
       ...provided,
-      color: selection,
       backgroundColor: state.isFocused ? text : background,
       borderColor: state.isFocused ? primary : background,
       boxShadow: state.isFocused ? `0 0 0 1px ${primary}` : "none",
@@ -21,25 +19,16 @@ const getCustomStyles = (theme) => {
         borderColor: state.isFocused ? primary : background,
       },
     }),
+    input: (provided) => ({
+      ...provided,
+      color: text,
+    }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isFocused ? primary : selection,
       color: state.isFocused ? text : foreground,
     }),
   };
 };
-
-const StyledSelect = styled(Select)`
-  .react-select__control {
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-  }
-  .react-select__menu {
-    border-radius: 0;
-    margin-top: 0;
-  }
-`
 
 const AutocompleteBar = () => {
   const results = useSelector((state) => state.search.results)
@@ -75,7 +64,7 @@ const AutocompleteBar = () => {
 
   return (
     <AutocompleteBarWrapper>
-      <StyledSelect
+      <Select
         options={options}
         onInputChange={handleInputChange}
         onChange={handleAutocompleteResultChange}

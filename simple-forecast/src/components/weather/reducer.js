@@ -6,13 +6,19 @@ enableMapSet()
 const CACHE_NAME = "cache"
 const UPDATE_ACTION = "cacheUpdate"
 const CHANGE_CURRNET_ACTION = "changeCurrent"
+const CHECK_ACTION = "checkCache"
+const FETCH_ACTION = "fetchCache"
 const LOCATE_ACTION = "locate"
 const LOAD_ACTION = "load"
+const LOADING_ACTION = "loadingCache"
 
 export const CACHE_UPDATE_ACTION = `${CACHE_NAME}/${UPDATE_ACTION}`
 export const CACHE_CHANGE_CURRENT_ACTION = `${CACHE_NAME}/${CHANGE_CURRNET_ACTION}`
 export const CACHE_USE_LOCATION_ACTION = `${CACHE_NAME}/${LOCATE_ACTION}`
 export const CACHE_LOAD_ACTION = `${CACHE_NAME}/${LOAD_ACTION}`
+export const CACHE_LOADING_ACTION = `${CACHE_NAME}/${LOADING_ACTION}`
+export const CACHE_CHECK_ACTION = `${CACHE_NAME}/${CHECK_ACTION}`
+export const CACHE_FETCH_ACTION = `${CACHE_NAME}/${FETCH_ACTION}`
 
 export const makeKey = (city, country) => {
   return `${city} ${country}`
@@ -34,7 +40,6 @@ const cacheSlice = createSlice({
       state.current = makeKey(action.payload.city, action.payload.country)
     },
     [UPDATE_ACTION]: (state, action) => {
-      state.isLoading = false
       if (action.payload === null) {
         return
       } else {
@@ -52,16 +57,20 @@ const cacheSlice = createSlice({
       }
     },
     [LOAD_ACTION]: (state) => {
-      state.isLoading = false
     },
     [LOCATE_ACTION]: (state) => {
       state.isLoading = true
     },
+    [LOADING_ACTION]: (state, action) => {
+      state.isLoading = action.payload
+    },
+    [CHECK_ACTION]: () => {},
+    [FETCH_ACTION]: () => {}
   },
 })
 
 const reducer = cacheSlice.reducer
 
-export const { cacheUpdate, changeCurrent, locate, load } = cacheSlice.actions
+export const { cacheUpdate, changeCurrent, locate, load, loadingCache, fetchCache, checkCache } = cacheSlice.actions
 
 export default reducer

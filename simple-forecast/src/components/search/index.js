@@ -12,6 +12,7 @@ const getCustomStyles = (theme) => {
   return {
     control: (provided, state) => ({
       ...provided,
+      color: text,
       backgroundColor: state.isFocused ? text : background,
       borderColor: state.isFocused ? primary : background,
       boxShadow: state.isFocused ? `0 0 0 1px ${primary}` : "none",
@@ -20,6 +21,10 @@ const getCustomStyles = (theme) => {
       },
     }),
     input: (provided) => ({
+      ...provided,
+      color: text,
+    }),
+    singleValue: (provided) => ({
       ...provided,
       color: text,
     }),

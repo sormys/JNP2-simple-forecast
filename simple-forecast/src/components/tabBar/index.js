@@ -2,9 +2,7 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { changeTab } from "./reducer"
 import { TabsNames } from "./const"
-import { ActiveTabItem } from "./ActiveTabItem"
-import { TabContainer } from "./TabContainer"
-import { TabItem } from "./TabItem"
+import { ActiveTabItem, TabItem, TabContainer } from "./components"
 
 function Tabs() {
   const dispatch = useDispatch()

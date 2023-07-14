@@ -7,9 +7,7 @@ import { map } from "rxjs/operators"
 export const defaultTabEpic = (action$) =>
   action$.pipe(
     ofType(CACHE_CHANGE_CURRENT_ACTION),
-    map(() => {
-      return changeTab(TabsNames.CURRENT)
-    }),
+    map(() => changeTab(TabsNames.CURRENT)),
   )
 
 export default defaultTabEpic

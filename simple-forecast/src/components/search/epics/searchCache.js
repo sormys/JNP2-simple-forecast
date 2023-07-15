@@ -8,8 +8,7 @@ export const searchCacheEpic = (action$, state$) =>
     map((action) => {
       if (state$.value.search.cached.has(action.payload))
         return readCache(action.payload)
-      else
-        return fetchSearch(action.payload)
+      else return fetchSearch(action.payload)
     }),
   )
 

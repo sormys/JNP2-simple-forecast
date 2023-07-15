@@ -1,6 +1,10 @@
-import { ofType } from "redux-observable";
-import { mergeMap } from "rxjs/operators";
-import { CACHE_LOCATE_ACTION, loadingCache, convertCoordinates } from "../reducer";
+import { ofType } from "redux-observable"
+import { mergeMap } from "rxjs/operators"
+import {
+  CACHE_LOCATE_ACTION,
+  loadingCache,
+  convertCoordinates,
+} from "../reducer"
 
 const getCoordinatesEpic = (action$) =>
   action$.pipe(
@@ -13,16 +17,17 @@ const getCoordinatesEpic = (action$) =>
           },
           (error) => {
             reject(error)
-          }
-        );
+          },
+        )
       })
-      .then(
-        ({ coords: { latitude, longitude } }) => convertCoordinates({ latitude, longitude }))
-      .catch((error) => {
-        console.log(error);
-        return loadingCache(false);
-      });
-    })
-  );
+        .then(({ coords: { latitude, longitude } }) =>
+          convertCoordinates({ latitude, longitude }),
+        )
+        .catch((error) => {
+          console.log(error)
+          return loadingCache(false)
+        })
+    }),
+  )
 
 export default getCoordinatesEpic

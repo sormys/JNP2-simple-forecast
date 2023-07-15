@@ -1,6 +1,10 @@
 import { ofType } from "redux-observable"
 import { map } from "rxjs/operators"
-import { CACHE_LOAD_ACTION, CACHE_UPDATE_ACTION, loadingCache } from "../reducer"
+import {
+  CACHE_LOAD_ACTION,
+  CACHE_UPDATE_ACTION,
+  loadingCache,
+} from "../reducer"
 
 export const finishLoadingEpic = (action$) =>
   action$.pipe(

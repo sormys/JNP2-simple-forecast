@@ -12,10 +12,8 @@ export const fetchAutocompleteEpic = (action$) =>
       return fetch(url)
         .then((response) => response.json())
         .then((data) => {
-          if (data.error !== undefined) 
-            return loadingSearch(false)
-          else
-            return autocompleteSave(data)
+          if (data.error !== undefined) return loadingSearch(false)
+          else return autocompleteSave(data)
         })
         .catch((error) => {
           console.log(error)

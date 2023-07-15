@@ -8,7 +8,7 @@ import { LineLoader } from "../loaders"
 import { ThemeContext } from "styled-components"
 
 const getCustomStyles = (theme) => {
-  const { primary, background, foreground, text } = theme;
+  const { primary, background, foreground, text } = theme
   return {
     control: (provided, state) => ({
       ...provided,
@@ -32,8 +32,8 @@ const getCustomStyles = (theme) => {
       ...provided,
       color: state.isFocused ? text : foreground,
     }),
-  };
-};
+  }
+}
 
 const AutocompleteBar = () => {
   const results = useSelector((state) => state.search.results)
@@ -64,8 +64,13 @@ const AutocompleteBar = () => {
   }
 
   const theme = useContext(ThemeContext)
-  const customStyles = getCustomStyles(theme.primary, theme.background, theme.foreground, theme.selection, theme.text)
-    
+  const customStyles = getCustomStyles(
+    theme.primary,
+    theme.background,
+    theme.foreground,
+    theme.selection,
+    theme.text,
+  )
 
   return (
     <AutocompleteBarWrapper>

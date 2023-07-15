@@ -1,7 +1,11 @@
 import { ofType } from "redux-observable"
 import { mergeMap } from "rxjs/operators"
 import { weatherAPIKey } from "../../../config"
-import { CACHE_CONVERT_COORDINATES_ACTION, changeCurrent, loadingCache } from "../reducer"
+import {
+  CACHE_CONVERT_COORDINATES_ACTION,
+  changeCurrent,
+  loadingCache,
+} from "../reducer"
 
 export const localWeatherEpic = (action$) =>
   action$.pipe(

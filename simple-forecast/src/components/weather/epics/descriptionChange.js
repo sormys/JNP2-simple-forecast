@@ -1,7 +1,7 @@
 import { ofType } from "redux-observable"
 import { CACHE_LOAD_ACTION, CACHE_UPDATE_ACTION } from "../reducer"
 import { map } from "rxjs/operators"
-import { changeDescription} from "../../gif/reducer"
+import { changeDescription } from "../../gif/reducer"
 
 export const descriptionChangeEpic = (action$, state$) =>
   action$.pipe(

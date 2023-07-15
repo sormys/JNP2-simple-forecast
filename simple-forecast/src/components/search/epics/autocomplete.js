@@ -12,8 +12,7 @@ export const autocompleEpic = (action$) =>
         action.payload === ""
       )
         return loadingSearch(false)
-      else 
-        return checkCache(action.payload)
+      else return checkCache(action.payload)
     }),
   )
 

@@ -8,7 +8,6 @@ const FETCH_ACTION = "fetchSearch"
 const READ_CACHE_ACTION = "readCache"
 const CHECK_CACHE_ACTION = "checkCache"
 
-
 export const SEARCH_CHANGE_ACTION = `${SEARCH_NAME}/${CHANGE_ACTION}`
 export const SEARCH_AUTOCOMPLETE_ACTION = `${SEARCH_NAME}/${AUTOCOMPLETE_ACTION}`
 export const SEARCH_LOADING_ACTION = `${SEARCH_NAME}/${LOADING_ACTION}`
@@ -46,6 +45,13 @@ const searchSlice = createSlice({
 
 const searchReducer = searchSlice.reducer
 
-export const { changeSearch, autocompleteSave, loadingSearch, fetchSearch, readCache, checkCache } = searchSlice.actions
+export const {
+  changeSearch,
+  autocompleteSave,
+  loadingSearch,
+  fetchSearch,
+  readCache,
+  checkCache,
+} = searchSlice.actions
 
 export default searchReducer

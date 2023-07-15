@@ -20,14 +20,12 @@ const gifsSlice = createSlice({
   },
   reducers: {
     [UPDATE_GIF_ACTION]: (state, action) => {
-      if (action.payload === null) 
-        return
+      if (action.payload === null) return
       state.current = action.payload.results[0].media_formats.tinymp4.url
       state.next = action.payload.next === "0" ? 0 : action.payload.next
     },
     [CHANGE_DESCRIPTION_ACTION]: (state, action) => {
-      if (action.payload === null)
-        return
+      if (action.payload === null) return
       state.description = action.payload
       state.next = 0
     },
@@ -38,6 +36,6 @@ const gifsSlice = createSlice({
 const reducer = gifsSlice.reducer
 
 export const { updateGif, changeCurrentGif, changeDescription, fetchGif } =
-    gifsSlice.actions
+  gifsSlice.actions
 
 export default reducer

@@ -15,10 +15,8 @@ export const checkCachedEpic = (action$, state$) =>
     map((action) => {
       const key = makeKey(action.payload.city, action.payload.country)
       const cached = state$.value.cache.map.get(key)
-      if (cached !== undefined && isUpToDate(cached.timeStamp))
-        return load()
-      else 
-        return fetchCache(action.payload)
+      if (cached !== undefined && isUpToDate(cached.timeStamp)) return load()
+      else return fetchCache(action.payload)
     }),
   )
 

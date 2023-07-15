@@ -1,6 +1,10 @@
 import { ofType } from "redux-observable"
 import { map } from "rxjs/operators"
-import { CACHE_CHANGE_CURRENT_ACTION, checkCache, loadingCache } from "../reducer"
+import {
+  CACHE_CHANGE_CURRENT_ACTION,
+  checkCache,
+  loadingCache,
+} from "../reducer"
 
 export const chooseCityEpic = (action$) =>
   action$.pipe(
@@ -8,8 +12,7 @@ export const chooseCityEpic = (action$) =>
     map((action) => {
       if (action.payload === null || action.payload === undefined)
         return loadingCache(false)
-      else 
-        return checkCache(action.payload)
+      else return checkCache(action.payload)
     }),
   )
 

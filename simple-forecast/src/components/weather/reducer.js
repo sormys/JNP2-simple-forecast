@@ -58,8 +58,7 @@ const cacheSlice = createSlice({
         )
       }
     },
-    [LOAD_ACTION]: () => {
-    },
+    [LOAD_ACTION]: () => {},
     [LOCATE_ACTION]: (state) => {
       state.isLoading = true
     },
@@ -74,6 +73,15 @@ const cacheSlice = createSlice({
 
 const reducer = cacheSlice.reducer
 
-export const { cacheUpdate, changeCurrent, locate, load, loadingCache, fetchCache, checkCache, convertCoordinates } = cacheSlice.actions
+export const {
+  cacheUpdate,
+  changeCurrent,
+  locate,
+  load,
+  loadingCache,
+  fetchCache,
+  checkCache,
+  convertCoordinates,
+} = cacheSlice.actions
 
 export default reducer

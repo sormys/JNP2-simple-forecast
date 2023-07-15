@@ -1,6 +1,10 @@
 import { ofType } from "redux-observable"
 import { map } from "rxjs/operators"
-import { SEARCH_AUTOCOMPLETE_ACTION, SEARCH_READ_CACHE_ACTION, loadingSearch } from "../reducer"
+import {
+  SEARCH_AUTOCOMPLETE_ACTION,
+  SEARCH_READ_CACHE_ACTION,
+  loadingSearch,
+} from "../reducer"
 
 export const finishLoadingEpic = (action$) =>
   action$.pipe(

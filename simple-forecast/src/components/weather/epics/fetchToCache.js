@@ -4,7 +4,6 @@ import { weatherAPIKey } from "../../../config"
 import { CACHE_CHECK_ACTION, loadingCache } from "../reducer"
 import { cacheUpdate } from "../reducer"
 
-
 export const fetchToCacheEpic = (action$) =>
   action$.pipe(
     ofType(CACHE_CHECK_ACTION),
@@ -13,10 +12,8 @@ export const fetchToCacheEpic = (action$) =>
       return fetch(url)
         .then((response) => response.json())
         .then((data) => {
-          if (data.error !== undefined) 
-            return loadingCache(false)
-          else 
-            return cacheUpdate({ data, timeStamp: Date.now() })
+          if (data.error !== undefined) return loadingCache(false)
+          else return cacheUpdate({ data, timeStamp: Date.now() })
         })
         .catch((error) => {
           console.log(error)

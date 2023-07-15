@@ -9,8 +9,8 @@ export const fetchOneGifEpic = (action$, state$) =>
     mergeMap(() => {
         const query = state$.value.gifs.description
         let url = `https://tenor.googleapis.com/v2/search?key=${gifsAPIKey}&q=${query}&limit=1`
-          if (state$.value.gifs.next !== 0)
-            url += `&pos=${state$.value.gifs.next}`
+        if (state$.value.gifs.next !== 0)
+          url += `&pos=${state$.value.gifs.next}`
         return fetch(url)
           .then((response) => response.json())
           .then((data) => {

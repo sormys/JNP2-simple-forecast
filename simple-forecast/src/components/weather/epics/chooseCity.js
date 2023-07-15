@@ -6,7 +6,7 @@ export const chooseCityEpic = (action$) =>
   action$.pipe(
     ofType(CACHE_CHANGE_CURRENT_ACTION),
     map((action) => {
-      if (action.payload === null)
+      if (action.payload === null || action.payload === undefined)
         return loadingCache(false)
       else 
         return checkCache(action.payload)
